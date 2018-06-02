@@ -23,8 +23,8 @@
     position: absolute;
     top: 120px;
     left: 100px;
-    width: 200;
-    height: 300;
+    width: 200px;
+    height: 300px;
     opacity: 0;
     transition: opacity 0.75s, left 0.75s, top 0.75s;
 }

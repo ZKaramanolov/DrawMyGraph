@@ -25,8 +25,6 @@ async function GreedySearchByLength(){
 
         //temp.isExtended = true;
         console.log(temp.name);
-        console.log(lenArr);
-        console.log(queue);
         let newTemp = [];
         for (let i = 0; i < temp.links.length; i++) {
             if (!temp.links[i].toNode.isTested) {
@@ -34,26 +32,31 @@ async function GreedySearchByLength(){
             }
         }
         let min = Math.min.apply(Math, newTemp);
-        //const count = newTemp.filter(item => item == min);
-        //console.log(count.length);
+        const count = newTemp.filter(item => item == min);
+
         let closestNode = temp;
 
-        for (let i = 0; i < temp.links.length; i++) {
-            //if (count.length <= 1) {
-                if (parseInt(temp.links[i].lenght) == min) {
-                    console.log(min);
-                    closestNode = temp.links[i].toNode;
-                    closestNode.isTested = true;
-                    closestNode.parent = temp;
-                    removeFromQueue(closestNode, lenArr);
-                    continue;
-                } else if (!temp.links[i].toNode.isTested) {
+        if (count.length <= 1) {
+            for (let i = 0; i < temp.links.length; i++) {
+                    if (parseInt(temp.links[i].lenght) == min) {
+                        closestNode = temp.links[i].toNode;
+                        closestNode.isTested = true;
+                        closestNode.parent = temp;
+                        removeFromQueue(closestNode, lenArr);
+                        continue;
+                    } else if (!temp.links[i].toNode.isTested) {
+                        addToQueueLeft(temp.links[i].toNode, temp.links[i].lenght,lenArr ,time);
+                    }
+            }
+        } else {
+            closestNode = nodeClosestByDistanceToEnd(temp.links, min);
+            for (let i = 0; i < temp.links.length; i++) {
+                if (closestNode.id != temp.links[i].toNode.id) {
                     addToQueueLeft(temp.links[i].toNode, temp.links[i].lenght,lenArr ,time);
                 }
-            // } else {
-            //     //closestNode = nodeClosestByDistanceToEnd(temp.links, min);
-            // }
+            }
         }
+
         if (temp == closestNode) {
             temp = queue.shift();
             lenArr.shift();
@@ -61,6 +64,8 @@ async function GreedySearchByLength(){
         } else {
             temp = closestNode;
         }
+        console.log(lenArr);
+        console.log(queue);
 
         Display.displayGraph();
         await sleep(time);
@@ -109,22 +114,21 @@ function nodeClosestByDistanceToEnd(links, value){
     //Object.values(links).map(Link => parseFloat(Link.lenght) == value ? calcDistanceToEnd(Link.toNode) : console.log(1));
     for (let i = 0; i < links.length; i++) {
         if (parseFloat(links[i].lenght) == value) {
-            console.log(links[i].toNode.name, value);
             calcDistanceToEnd(links[i].toNode);
         }
     }
     let linksByDistanceToEnd = Object.values(links).map(Link => Link.toNode.distanceToEnd);
     let minDis = Math.min.apply(Math, linksByDistanceToEnd);
-
     for (let i = 0; i < links.length; i++) {
         if (links[i].toNode.distanceToEnd == minDis) {
+            links[i].toNode.isTested = true;
             return links[i].toNode;
         }
     }
 }
 
 function calcDistanceToEnd(node){
-    if (node.distanceToEnd == 0) {
+    if (node.distanceToEnd == Infinity) {
         let directLine = Math.floor(Math.sqrt(Math.pow(endNode.x - node.x, 2)
         + Math.pow(endNode.y - node.y, 2)));
         node.distanceToEnd = directLine;

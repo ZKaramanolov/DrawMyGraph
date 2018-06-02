@@ -12,7 +12,7 @@ class Node{
         //the depth of the node
         this.depth = 0;
         //distance to end with straight line
-        this.distanceToEnd = 0;
+        this.distanceToEnd = Infinity;
         //accumulated charges
         this.charges = Infinity;
         //Contain <Node, charges>

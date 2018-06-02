@@ -22,7 +22,7 @@ class Graph{
             g.graph[i].isTested = false;
             g.graph[i].isExtended = false;
             g.graph[i].depth = 0;
-            g.graph[i].distanceToEnd = 0.0;
+            g.graph[i].distanceToEnd = Infinity;
             g.graph[i].charges = Infinity;
             g.graph[i].parent = null;
         }
