@@ -1,0 +1,241 @@
+.menu-algorithms{
+    visibility: visible;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 75px;
+    height: 75px;
+    border-top-left-radius: 100%;
+    background: #313131;
+    box-shadow: -4px -4px 10px 0px #1a1a1a;
+    overflow: hidden;
+    z-index: 1;
+    transition: width 0.75s, height 0.75s, border-top-left-radius 0.75s;
+}
+
+.menu-algorithms:hover {
+    width: 250px;
+    height: 325px;
+    border-top-left-radius: 10%;
+}
+
+.menu-algorithms-content{
+    position: absolute;
+    top: 120px;
+    left: 100px;
+    width: 200;
+    height: 300;
+    opacity: 0;
+    transition: opacity 0.75s, left 0.75s, top 0.75s;
+}
+
+.menu-algorithms:hover .menu-algorithms-content{
+    top: 10px;
+    left: 10px;
+    opacity: 1;
+}
+
+.algorithms-titile-wrapper{
+    text-align: center;
+    margin: 10px;
+}
+
+.algorithms-title{
+    text-shadow: 5px 5px 7px #1a1a1a;
+    font-weight: 900;
+    font-family: cursive;
+    font-size: 22px;
+    color: #ffffff;
+}
+
+.exit-algorithm-wrapper{
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    box-shadow: 1px 1px 5px 0px #1a1a1a;
+    border-radius: 10%;
+}
+
+.exit-algorithm{
+    background: #414141;
+    font-family: cursive;
+    font-size: 16px;
+    border: 0px;
+    color: #ffffff;
+}
+
+.algorithms-wrapper{
+    position: relative;
+    width: 225px;
+    height: 350px;
+}
+
+.algorithm{
+    text-align: center;
+    font-family: cursive;
+    font-size: 16px;
+    color: #ffffff;
+    background: #313131;
+    margin: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+
+.algorithm-setup{
+    position: absolute;
+    visibility: hidden;
+    display: none;
+    bottom: 0;
+    right: 0;
+    width: 250px;
+    height: 300px;
+    padding: 10px;
+    border-top-left-radius: 10%;
+    background: #313131;
+    box-shadow: -4px -4px 10px 0px #1a1a1a;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.algorithm-setup-content{
+    margin: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 275px;
+    width: 230px;
+    text-align: center;
+}
+
+.setup-title-wrapper{
+    text-align: center;
+}
+
+.setup-title{
+    color: #ffffff;
+    font-family: cursive;
+    font-size: 18px;
+    background: #313131;
+}
+
+.start-end-wrapper{
+    position: relative;
+    padding: 5px;
+    margin: 5px;
+    height: 80px;
+}
+
+.start-wrapper{
+    position: relative;
+    width: 85px;
+    float: left;
+    padding: 5px;
+    text-align: center;
+}
+
+.end-wrapper{
+    position: relative;
+    float: right;
+    text-align: center;
+    width: 85px;
+    padding: 5px;
+    text-align: center;
+}
+
+.start-title{
+    font-family: cursive;
+    font-size: 15px;
+    color: #ffffff;
+    display: block;
+    padding-bottom: 5px;
+}
+
+.start-input{
+    display: block;
+    font-family: cursive;
+    font-size: 14px;
+    color: #a1a1a1;
+    padding-bottom: 5px;
+}
+
+.start-btn{
+    background: #414141;
+    color: #ffffff;
+    border: 0px;
+    border-radius: 10%;
+    box-shadow: 1px 1px 5px 0px #1a1a1a;
+    padding-bottom: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.restrictions-wrapper{
+    visibility: hidden;
+    display: none;
+    width: auto;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.link-type{
+    width: 90px;
+    margin: 10px;
+    margin-right: 10px;
+    background: #414141;
+    border: 0px;
+    font-family: cursive;
+    font-size: 18px;
+    border-radius: 10%;
+    text-align: center;
+}
+
+.node-weight{
+    width: 90px;
+    margin-left: 10px;
+    background: #414141;
+    border: 0px;
+    font-family: cursive;
+    font-size: 18px;
+    border-radius: 10%;
+    text-align: center;
+}
+
+.slider-wrapper{
+    height: 50px;
+}
+
+.min-value-wrapper{
+    float: left;
+    width: 100px;
+    height: 20px;
+}
+
+.max-value-wrapper{
+    float: right;
+    width: 100px;
+    height: 20px;
+}
+
+.value{
+    font-family: cursive;
+    color: #7a7a7a;
+    font-size: 12px;
+}
+
+.algorithm-start-btn-wrapper{
+    display: block;
+    position: absolute;
+    left:30%;
+    bottom: 5%;
+}
+
+.algorithm-start-btn{
+    padding: 10px;
+    background: #313131;
+    color: #ffffff;
+    border: 0px;
+    text-shadow: 6px 5px 0px #1a1a1a;
+    padding-bottom: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}

@@ -1,0 +1,111 @@
+<html>
+<head>
+    <title>Draw My Graph</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="Css/elementsStyle.css">
+    <link rel="stylesheet" href="Css/settingsStyle.css">
+    <link rel="stylesheet" href="Css/loadStyle.css">
+    <link rel="stylesheet" href="Css/algorithmsStyle.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="pictures/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="pictures/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="pictures/favicon-16x16.png">
+</head>
+<body>
+    <div class="menu-elements">
+        <div class="menu-elements-content">
+            <div class="elements-title-wrapper">
+                <span class="elements-title">Elements<span>
+            </div>
+            <div class="elements-wrapper">
+                <div class="element" id="Node">
+                    <span class="element-name">Node</span>
+                </div>
+                <div class="element" id="Link">
+                    <span class="element-name">Link</span>
+                </div>
+                <div>
+                    <button onclick="fillLoad('save')" class="button">Save</button>
+                </div>
+                <div>
+                    <button onclick="fillLoad('load')" class="button">Load</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="settings-wrapper">
+        <div class="elements-title-wrapper">
+            <span class="elements-title">Settings<span>
+        </div>
+        <div class="settings-elements-wrapper"></div>
+    </div>
+
+    <div class="menu-algorithms">
+        <div class="menu-algorithms-content"></div>
+    </div>
+
+    <div class="algorithm-setup">
+        <div class="algorithm-setup-content">
+            <div class="setup-title-wrapper">
+                <span class="setup-title"></span>
+            </div>
+            <div class="exit-algorithm-wrapper">
+                <button onclick="exitAlgogithm()" class="exit-algorithm">X</button>
+            </div>
+            <div class="start-end-wrapper">
+                <div class="start-wrapper">
+                    <span class="start-title">Start Node</span>
+                    <span class="start-input" id="sLabel"></span>
+                    <button class="start-btn" onclick="setStartNode()">Set</button>
+                </div>
+                <div class="end-wrapper">
+                    <span class="start-title">End Node</span>
+                    <span class="start-input" id="eLabel"></span>
+                    <button class="start-btn" onclick="setEndNode()">Set</button>
+                </div>
+            </div>
+            <div class="restrictions-wrapper">
+                <input class="link-type" placeholder="link type">
+                <input class="node-weight" placeholder="weight">
+            </div>
+            <div class="slider-wrapper">
+                <input type="range" min="100" max="5000" value="5000" step="100" name="range"/>
+                <div class="min-value-wrapper">
+                    <span class="value">100</span>
+                </div>
+                <div class="max-value-wrapper">
+                    <span class="value">5000</span>
+                </div>
+            </div>
+            <div class="algorithm-start-btn-wrapper">
+                <button class="algorithm-start-btn">Start</button>
+                <button onclick="resetAlgorithmSetup()" class="algorithm-start-btn">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="blur" class="blur"></div>
+    <div id="load" class="load"></div>
+
+    <canvas class="canvas" id="canvas"></canvas>
+
+    <script src="Logic/node.js"></script>
+    <script src="Logic/link.js"></script>
+    <script src="Logic/graph.js"></script>
+    <script src="Logic/SearchAlgorithms/deepFirstSearch.js"></script>
+    <script src="Logic/SearchAlgorithms/greedySearchByLength.js"></script>
+    <script src="Logic/SearchAlgorithms/dijkstraAlgorithm.js"></script>
+    <script src="Logic/SearchAlgorithms/DFSWithRestrictions.js"></script>
+    <script src="Logic/SearchAlgorithms/DFSWithNodeThatMustPass.js"></script>
+    <script src="UI/menuUI.js"></script>
+    <script src="UI/settingsUI.js"></script>
+    <script src="UI/loadUI.js"></script>
+    <script src="UI/algorithmUI.js"></script>
+    <script src="Display/canvassetup.js"></script>
+    <script src="Display/displaygraph.js"></script>
+    <script src="Controls/selection.js"></script>
+    <script src="Controls/drawlink.js"></script>
+    <script src="Controls/saveload.js"></script>
+    <script src="GlobalVariables.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
