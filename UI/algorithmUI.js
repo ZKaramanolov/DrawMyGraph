@@ -30,7 +30,7 @@ function fillAlgorithm(){
         AlgorithmPanel("DeepFirstSearch(DFS)", "DeepFirstSearch");
     });
     document.getElementsByName("BFS")[0].addEventListener('click', () => {
-        alert("Isn't implemented!");
+        alert("It'sn't implemented!");
     });
     document.getElementsByName("GSBL")[0].addEventListener('click', () => {
         AlgorithmPanel("GreedySearchByLength", "GreedySearchByLength");
@@ -53,6 +53,9 @@ function AlgorithmPanel(title, callback = ""){
     if (title == "DFSWithRestrictions") {
         document.querySelector(".restrictions-wrapper").style = "visibility: visible; display: block";
     }
+    if (title == "DFSWithNodeThatMustPass") {
+        document.querySelector(".nodes-input-wrapper").style = "visibility: visible; display: block"
+    }
     document.querySelector(".algorithm-start-btn").setAttribute("onclick", callback + "()");
 }
 
@@ -70,8 +73,9 @@ function setEndNode(){
 
 function exitAlgogithm(){
     document.querySelector(".menu-algorithms").style = "visibility: visible";
-    document.querySelector(".algorithm-setup").style = "visibility: hidden; display: hidden";
+    document.querySelector(".algorithm-setup").style = "visibility: hidden; display: none";
     document.querySelector(".restrictions-wrapper").style = "visibility: hidden; display: none";
+    document.querySelector(".nodes-input-wrapper").style = "visibility: hidden; display: none";
     document.querySelector("#sLabel").innerHTML = '';
     document.querySelector("#eLabel").innerHTML = '';
     document.querySelector(".link-type").value = '';

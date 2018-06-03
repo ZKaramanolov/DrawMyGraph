@@ -86,15 +86,12 @@ async function GreedySearchByLength(){
                 }
                 for (let i = 0; i < tempArr.length; i++) {
                     if (closestNode.id != tempArr[i].id && !tempArr[i].isTested) {
-                        console.log(tempArr[i].name);
                         addToQueueLeft(tempArr[i], tempLenArr[i], lenArr, temp, time);
                     }
                 }
             }
         }
         temp = closestNode;
-        console.log(lenArr);
-        console.log(queue);
 
         Display.displayGraph();
         await sleep(time);

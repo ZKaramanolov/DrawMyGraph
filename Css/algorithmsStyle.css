@@ -81,7 +81,6 @@
     z-index: 1;
 }
 
-
 .algorithm-setup{
     position: absolute;
     visibility: hidden;
@@ -109,6 +108,7 @@
 
 .setup-title-wrapper{
     text-align: center;
+    padding-top: 10px;
 }
 
 .setup-title{
@@ -177,6 +177,7 @@
     margin-bottom: 20px;
 }
 
+
 .link-type{
     width: 90px;
     margin: 10px;
@@ -192,6 +193,24 @@
 .node-weight{
     width: 90px;
     margin-left: 10px;
+    background: #414141;
+    border: 0px;
+    font-family: cursive;
+    font-size: 18px;
+    border-radius: 10%;
+    text-align: center;
+}
+
+.nodes-input-wrapper{
+    visibility: visible;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.nodes-input{
+    width: 180px;
+    margin: 10px;
+    margin-right: 10px;
     background: #414141;
     border: 0px;
     font-family: cursive;
