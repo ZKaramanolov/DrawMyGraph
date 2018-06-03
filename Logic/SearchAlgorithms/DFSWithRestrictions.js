@@ -23,7 +23,6 @@ async function DFSWithRestrictions(){
 
         if (temp.id == endNode.id) {
             havePath = true;
-            alert("Have path!");
             Display.displayGraph();
             return;
         }

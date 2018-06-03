@@ -30,7 +30,7 @@ function fillAlgorithm(){
         AlgorithmPanel("DeepFirstSearch(DFS)", "DeepFirstSearch");
     });
     document.getElementsByName("BFS")[0].addEventListener('click', () => {
-        AlgorithmPanel("BreadthFirstSearch(BFS)");
+        alert("Isn't implemented!");
     });
     document.getElementsByName("GSBL")[0].addEventListener('click', () => {
         AlgorithmPanel("GreedySearchByLength", "GreedySearchByLength");
@@ -42,7 +42,7 @@ function fillAlgorithm(){
         AlgorithmPanel("DFSWithRestrictions", "DFSWithRestrictions");
     });
     document.getElementsByName("DFSWNTMP")[0].addEventListener('click', () => {
-        AlgorithmPanel("DFSWithNodeThatMustPass");
+        AlgorithmPanel("DFSWithNodeThatMustPass", "DFSWithNodeThatMustPass");
     });
 }
 

@@ -13,57 +13,86 @@ async function GreedySearchByLength(){
         alert("Start and end node are same!");
     }
 
-    //queue.push(startNode);
     let temp = startNode;
 
     while(true){
         temp.isTested = true
         if (temp.id == endNode.id) {
             alert("Have path!");
+            havePath = true;
+            Display.displayGraph();
             return;
         }
 
-        //temp.isExtended = true;
-        console.log(temp.name);
         let newTemp = [];
         for (let i = 0; i < temp.links.length; i++) {
             if (!temp.links[i].toNode.isTested) {
+                temp.links[i].toNode.parent = temp;
                 newTemp.push(temp.links[i].lenght);
             }
         }
-        let min = Math.min.apply(Math, newTemp);
-        const count = newTemp.filter(item => item == min);
+        let min = Math.min(...newTemp);
+
+        let count = newTemp.filter(item => item == min);
 
         let closestNode = temp;
 
         if (count.length <= 1) {
             for (let i = 0; i < temp.links.length; i++) {
-                    if (parseInt(temp.links[i].lenght) == min) {
-                        closestNode = temp.links[i].toNode;
-                        closestNode.isTested = true;
-                        closestNode.parent = temp;
-                        removeFromQueue(closestNode, lenArr);
-                        continue;
-                    } else if (!temp.links[i].toNode.isTested) {
-                        addToQueueLeft(temp.links[i].toNode, temp.links[i].lenght,lenArr ,time);
-                    }
+                if (parseInt(temp.links[i].lenght) == min) {
+                    closestNode = temp.links[i].toNode;
+                    closestNode.isTested = true;
+                    closestNode.parent = temp;
+                    removeFromQueue(closestNode, lenArr);
+                    continue;
+                } else if (!temp.links[i].toNode.isTested) {
+                    addToQueueLeft(temp.links[i].toNode, temp.links[i].lenght, lenArr, temp, time);
+                }
             }
         } else {
             closestNode = nodeClosestByDistanceToEnd(temp.links, min);
             for (let i = 0; i < temp.links.length; i++) {
-                if (closestNode.id != temp.links[i].toNode.id) {
-                    addToQueueLeft(temp.links[i].toNode, temp.links[i].lenght,lenArr ,time);
+                if (closestNode.id != temp.links[i].toNode.id && !temp.links[i].toNode.isTested) {
+                    addToQueueLeft(temp.links[i].toNode, temp.links[i].lenght, lenArr, temp, time);
                 }
             }
         }
 
         if (temp == closestNode) {
-            temp = queue.shift();
-            lenArr.shift();
-            temp.isTested = true;
-        } else {
-            temp = closestNode;
+            min = Math.min(...lenArr);
+            count = lenArr.filter(item => item == min);
+            if (count.lenght <= 1) {
+                closestNode = queue.shift();
+                lenArr.shift();
+                closestNode.parent = temp;
+                closestNode.isTested = true;
+            } else {
+                let tempArr = [];
+                let tempLenArr = [];
+                for (var i = 0; i < count.length; i++) {
+                    let calcDisTemp = queue.shift();
+                    calcDistanceToEnd(calcDisTemp);
+                    tempArr.push(calcDisTemp);
+                    tempLenArr.push(lenArr.shift());
+                }
+                let nodesByDistanceToEnd = Object.values(tempArr).map(n => n.distanceToEnd);
+                let minDis = Math.min(...nodesByDistanceToEnd);
+                for (var i = 0; i < tempArr.length; i++) {
+                    if (tempArr[i].distanceToEnd == minDis) {
+                        closestNode = tempArr[i];
+                        tempLenArr[i] = 0;
+                        closestNode.isTested = true;
+                    }
+                }
+                for (let i = 0; i < tempArr.length; i++) {
+                    if (closestNode.id != tempArr[i].id && !tempArr[i].isTested) {
+                        console.log(tempArr[i].name);
+                        addToQueueLeft(tempArr[i], tempLenArr[i], lenArr, temp, time);
+                    }
+                }
+            }
         }
+        temp = closestNode;
         console.log(lenArr);
         console.log(queue);
 
@@ -73,7 +102,7 @@ async function GreedySearchByLength(){
     alert("Don't have path!");
 }
 
-function addToQueueLeft(nodeToAdd, linkLen, lenArr, time) {
+function addToQueueLeft(nodeToAdd, linkLen, lenArr, temp, time) {
     if (queue.length == 0) {
         queue.push(nodeToAdd);
         lenArr.push(linkLen);
@@ -92,6 +121,7 @@ function addToQueueLeft(nodeToAdd, linkLen, lenArr, time) {
             if(parseFloat(lenArr[i]) > parseFloat(linkLen)) {
                 queue.splice(i, 0, nodeToAdd);
                 lenArr.splice(i, 0, linkLen);
+                nodeToAdd.parent = temp;
                 return;
             }
         }
@@ -118,7 +148,7 @@ function nodeClosestByDistanceToEnd(links, value){
         }
     }
     let linksByDistanceToEnd = Object.values(links).map(Link => Link.toNode.distanceToEnd);
-    let minDis = Math.min.apply(Math, linksByDistanceToEnd);
+    let minDis = Math.min(...linksByDistanceToEnd);
     for (let i = 0; i < links.length; i++) {
         if (links[i].toNode.distanceToEnd == minDis) {
             links[i].toNode.isTested = true;
