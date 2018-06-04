@@ -59,7 +59,3 @@ function addToQueue(nodeToAdd) {
 	}
 	queue.push(nodeToAdd);
 }
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}

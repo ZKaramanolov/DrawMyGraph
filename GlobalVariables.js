@@ -24,3 +24,9 @@ var stack = [];
 var queue = [];
 //if algorithm is found path
 var havePath = false;
+//mid start node for search algorithm
+var tempStart;
+//mid end node for search algorithm
+var tempEnd;
+var path = [];
+var havePath2 = false;

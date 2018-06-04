@@ -29,6 +29,9 @@ class Graph{
         stack = [];
         queue = [];
         havePath = false;
+        havePath2 = false;
+        tempStart = undefined;
+        tempEnd = undefined;
         //Graph.resetGraphLinks()
         Display.displayGraph();
     }

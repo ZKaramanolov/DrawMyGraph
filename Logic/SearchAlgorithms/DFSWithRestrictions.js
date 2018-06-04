@@ -45,7 +45,3 @@ async function DFSWithRestrictions(){
     }
     alert("Don't have path!");
 }
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}

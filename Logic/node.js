@@ -9,8 +9,6 @@ class Node{
         this.isExtended = false;
         //Is it visited
         this.isTested = false;
-        //the depth of the node
-        this.depth = 0;
         //distance to end with straight line
         this.distanceToEnd = Infinity;
         //accumulated charges

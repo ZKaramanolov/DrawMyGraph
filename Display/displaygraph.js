@@ -8,6 +8,8 @@ class Display {
                 ctx.fillStyle = "#58ef62";
             } else if(g.graph[i] == endNode) {
                 ctx.fillStyle = "#e20929";
+            } else if(g.graph[i] == tempStart || g.graph[i] == tempEnd){
+                ctx.fillStyle = "#cb15ef";
             } else if(g.graph[i].isTested) {
                 ctx.fillStyle = "#c8cbd1";
             } else if(stack.includes(g.graph[i]) || queue.includes(g.graph[i])) {
@@ -68,6 +70,9 @@ class Display {
             }
         }
 
+        if (havePath2 == true){
+            Display.displayPath2();
+        }
         if (havePath == true) {
             Display.displayPath(endNode);
         }
@@ -100,6 +105,32 @@ class Display {
             Display.displayPath(s.parent);
         }
     }
+
+    static displayPath2(){
+        for(let i = 0; i < path.length-1; i++){
+            let s = path[i]
+            let to = path[i+1];
+            let toX = s.x + (to.x - s.x) * 0.1;
+            let toY = s.y + (to.y - s.y) * 0.1;
+            let headlen = 20;
+            let angle = Math.atan2(toY - s.y, toX - s.x);
+
+            ctx.beginPath();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "#ff0000";
+            ctx.moveTo(s.x, s.y);
+            ctx.lineTo(toX, toY);
+            ctx.lineTo(toX+headlen*Math.cos(angle-Math.PI/8),toY+headlen*Math.sin(angle-Math.PI/8));
+            ctx.moveTo(toX+headlen*Math.cos(angle+Math.PI/8),toY+headlen*Math.sin(angle+Math.PI/8));
+            ctx.lineTo(toX, toY);
+            ctx.lineTo(to.x, to.y);
+            ctx.stroke();
+        }
+    }
+
+    // static drawPath(){
+    //
+    // }
 
     static clearCanvas(){
         ctx.clearRect(0, 0, canvas.width, canvas.height);

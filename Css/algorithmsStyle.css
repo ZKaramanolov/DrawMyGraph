@@ -202,8 +202,8 @@
 }
 
 .nodes-input-wrapper{
-    visibility: visible;
-    display: block;
+    visibility: hidden;
+    display: none;
     margin-bottom: 20px;
 }
 
