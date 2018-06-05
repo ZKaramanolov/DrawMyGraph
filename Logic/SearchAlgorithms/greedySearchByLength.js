@@ -68,15 +68,15 @@ async function GreedySearchByLength(){
             } else {
                 let tempArr = [];
                 let tempLenArr = [];
-                for (var i = 0; i < count.length; i++) {
+                for (let i = 0; i < count.length; i++) {
                     let calcDisTemp = queue.shift();
-                    calcDistanceToEnd(calcDisTemp);
+                    calcDistanceToEnd(calcDisTemp, endNode);
                     tempArr.push(calcDisTemp);
                     tempLenArr.push(lenArr.shift());
                 }
                 let nodesByDistanceToEnd = Object.values(tempArr).map(n => n.distanceToEnd);
                 let minDis = Math.min(...nodesByDistanceToEnd);
-                for (var i = 0; i < tempArr.length; i++) {
+                for (let i = 0; i < tempArr.length; i++) {
                     if (tempArr[i].distanceToEnd == minDis) {
                         closestNode = tempArr[i];
                         tempLenArr[i] = 0;
@@ -103,7 +103,7 @@ function addToQueueLeft(nodeToAdd, linkLen, lenArr, temp, time) {
         queue.push(nodeToAdd);
         lenArr.push(linkLen);
     } else {
-        for (var i = 0; i < queue.length; i++) {
+        for (let i = 0; i < queue.length; i++) {
             if (nodeToAdd.id == queue[i].id) {
                 if(parseFloat(lenArr[i]) > parseFloat(linkLen)){
                     removeFromQueue(nodeToAdd, lenArr);
@@ -127,7 +127,7 @@ function addToQueueLeft(nodeToAdd, linkLen, lenArr, temp, time) {
 }
 
 function removeFromQueue(node, lenArr){
-    for (var i = 0; i < queue.length; i++) {
+    for (let i = 0; i < queue.length; i++) {
         if (queue[i].id == node.id) {
             queue.splice(i, 1);
             lenArr.splice(i, 1);
@@ -136,11 +136,11 @@ function removeFromQueue(node, lenArr){
     }
 }
 
-function nodeClosestByDistanceToEnd(links, value){
-    //Object.values(links).map(Link => parseFloat(Link.lenght) == value ? calcDistanceToEnd(Link.toNode) : console.log(1));
+function nodeClosestByDistanceToEnd(links, min){
+    //Object.values(links).map(Link => parseFloat(Link.lenght) == min ? calcDistanceToEnd(Link.toNode) : console.log(1));
     for (let i = 0; i < links.length; i++) {
-        if (parseFloat(links[i].lenght) == value) {
-            calcDistanceToEnd(links[i].toNode);
+        if (parseFloat(links[i].lenght) == min) {
+            calcDistanceToEnd(links[i].toNode, endNode);
         }
     }
     let linksByDistanceToEnd = Object.values(links).map(Link => Link.toNode.distanceToEnd);
@@ -153,10 +153,10 @@ function nodeClosestByDistanceToEnd(links, value){
     }
 }
 
-function calcDistanceToEnd(node){
+function calcDistanceToEnd(node, from){
     if (node.distanceToEnd == Infinity) {
-        let directLine = Math.floor(Math.sqrt(Math.pow(endNode.x - node.x, 2)
-        + Math.pow(endNode.y - node.y, 2)));
+        let directLine = Math.floor(Math.sqrt(Math.pow(from.x - node.x, 2)
+        + Math.pow(from.y - node.y, 2)));
         node.distanceToEnd = directLine;
     }
 }

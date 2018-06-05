@@ -120,9 +120,11 @@
 
 .start-end-wrapper{
     position: relative;
-    padding: 5px;
     margin: 5px;
     height: 80px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .start-wrapper{
@@ -204,7 +206,7 @@
 .nodes-input-wrapper{
     visibility: hidden;
     display: none;
-    margin-bottom: 20px;
+
 }
 
 .nodes-input{

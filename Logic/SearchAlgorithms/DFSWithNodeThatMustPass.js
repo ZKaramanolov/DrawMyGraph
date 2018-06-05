@@ -3,20 +3,14 @@ async function DFSWithNodeThatMustPass(){
     document.getElementsByName("range")[0].addEventListener('change', () => {
         time = document.getElementsByName("range")[0].value;
     });
-    path = [];
     let nodesString = document.querySelector(".nodes-input").value;
     let nodesArr = nodesString.replace(/^\r\n+|\r\n+$/g, '').split(",");
     let nodes = [];
-    nodes.push(startNode);
-    for (let i = 0; i < nodesArr.length; i++) {
-        for (let j = 0; j < g.graph.length; j++) {
-            if (nodesArr[i] == g.graph[j].name) {
-                nodes.push(g.graph[j]);
-            }
-        }
-    }
-    nodes.push(endNode);
+    let charges = 0;
 
+    nodes = fillNodesArr(nodesArr);
+
+    path = [];
     Graph.resetGraph();
 
     if (startNode.id == endNode.id) {
@@ -39,14 +33,9 @@ async function DFSWithNodeThatMustPass(){
                 alert("Don't have path!");
                 return;
             } else if (temp.id == tempEnd.id) {
+                charges += tempEnd.charges;
                 break;
             }
-
-            // for (var i = 0; i < nodes.length; i++) {
-            //     if (nodes[i].id == temp.id) {
-            //         nodes.splice(i, 1);
-            //     }
-            // }
 
             temp.isTested = true;
             Display.displayGraph();
@@ -61,6 +50,7 @@ async function DFSWithNodeThatMustPass(){
     }
     path.push(endNode);
     path.reverse();
+    alert("Total charges: " + charges);
     havePath2 = true;
     Display.displayGraph();
 }
@@ -74,4 +64,35 @@ function savePath(segmentPath, s, e){
 
         savePath(segmentPath, s, e.parent);
     }
+}
+
+function fillNodesArr(nodesArr){
+    let nodes = [];
+    nodes.push(startNode);
+    for (let i = 0; i < nodesArr.length; i++) {
+        for (let j = 0; j < g.graph.length; j++) {
+            if (nodesArr[i] == g.graph[j].name) {
+                nodes.push(g.graph[j]);
+            }
+        }
+    }
+    nodes.push(endNode);
+
+    if (document.querySelector("#op").checked) {
+        for (let i = 1; i < nodes.length - 1; i++) {
+            calcDistanceToEnd(nodes[i], startNode);
+        }
+        //selective sort
+        for (let i = 1; i < nodes.length-2; i++) {
+            for (let j = 2; j < nodes.length-1; j++) {
+                if (nodes[i].distanceToEnd > nodes[j].distanceToEnd) {
+                    let t = nodes[j];
+                    nodes[j] = nodes[i];
+                    nodes[i] = t;
+                }
+            }
+        }
+    }
+
+    return nodes;
 }

@@ -22,11 +22,13 @@ var endNode;
 var stack = [];
 //queue for search algorithms
 var queue = [];
-//if algorithm is found path
+//flag for first displayPath
 var havePath = false;
+//flag for displayPath2
+var havePath2 = false;
 //mid start node for search algorithm
 var tempStart;
 //mid end node for search algorithm
 var tempEnd;
+//Array for the Path2 displayPath2
 var path = [];
-var havePath2 = false;
