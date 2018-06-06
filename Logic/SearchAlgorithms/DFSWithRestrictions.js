@@ -14,6 +14,7 @@ async function DFSWithRestrictions(){
     }
 
     stack.push(startNode);
+    startNode.charges = 0;
 
     while(stack.length > 0){
         let temp = stack.pop();
@@ -23,15 +24,18 @@ async function DFSWithRestrictions(){
 
         if (temp.id == endNode.id) {
             havePath = true;
+            alert("Distance from start to end: " + endNode.charges);
             Display.displayGraph();
             return;
         }
 
         for (let i = 0; i < temp.links.length; i++) {
+            let tempLen = temp.charges + Number(temp.links[i].lenght);
             if (!temp.links[i].toNode.isTested
                 && !stack.includes(temp.links[i].toNode)
                 && temp.links[i].toNode.weight < parseInt(ignorWeight)
                 && temp.links[i].type != ignorLink.trim()) {
+                    temp.links[i].toNode.charges = tempLen;
                     temp.links[i].toNode.parent = temp;
                     stack.push(temp.links[i].toNode);
                     Display.displayGraph();

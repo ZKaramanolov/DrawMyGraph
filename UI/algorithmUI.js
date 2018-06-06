@@ -80,6 +80,7 @@ function exitAlgogithm(){
     document.querySelector("#eLabel").innerHTML = '';
     document.querySelector(".link-type").value = '';
     document.querySelector(".node-weight").value = '';
+    document.querySelector(".nodes-input").value = '';
     startNode = undefined;
     endNode = undefined;
     resetAlgorithmSetup();
